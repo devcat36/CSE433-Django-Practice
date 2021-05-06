@@ -1,2 +1,2 @@
-# CSE443 Practice #02
-Setup of a basic django project
+# CSE443 Django Practice
+Repository for django practice
