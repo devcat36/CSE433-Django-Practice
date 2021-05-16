@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -5,39 +7,46 @@
     <title>
         Django Girl Blog
     </title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 </head>
 
 <body>
-    <header>
+    <header class="page-header">
         <h1>Django Girls Blog</h1>
     </header>
-    <article>
-        <p>published: 14.06.2014, 12:14</p>
-        <h2><a href="#">My first post</a></h2>
-        <p>
-            Nunc sed augue et augue sagittis rhoncus. Ut ut massa elit. Donec id scelerisque lectus. Proin vel rhoncus
-            ante. Cras condimentum facilisis varius. Ut urna enim, volutpat in odio venenatis, suscipit sollicitudin
-            eros. Mauris ac accumsan orci. Sed viverra, arcu non lobortis mollis, ex risus scelerisque mauris, in
-            facilisis tellus ipsum accumsan ligula. Fusce eu aliquam felis. Etiam eu facilisis ipsum, ac commodo sem.
-            Nunc ac velit vitae augue sollicitudin malesuada a non ligula. Vivamus pharetra mi nisl, id lacinia quam
-            rhoncus vel. Curabitur venenatis pretium mauris at pretium. Vestibulum et lectus posuere dolor sodales
-            convallis. Ut malesuada iaculis mi, eu iaculis tellus euismod eu. Sed sit amet sapien vulputate, suscipit
-            arcu sed, maximus purus.
-        </p>
-    </article>
-    <article>
-        <p>published: 14.06.2014, 12:14</p>
-        <h2><a href="#">My second post</a></h2>
-        <p>
-            Ut in leo lorem. Etiam nec ultricies dolor, non tempus massa. Etiam velit velit, finibus vel dignissim et,
-            auctor at tellus. Mauris sodales diam nibh, quis tristique leo congue in. Morbi sit amet arcu commodo,
-            tristique libero in, porta risus. Vestibulum molestie gravida justo, ac efficitur est tincidunt bibendum.
-            Nulla ut leo non orci ullamcorper convallis nec a libero. Curabitur porta ex nec nunc tempor, vitae
-            vulputate erat consectetur. Duis bibendum, magna a luctus scelerisque, est arcu lacinia risus, sit amet
-            tincidunt dui dui at neque. Etiam at congue nulla. Nullam congue mi massa, porta tempus metus pellentesque
-            ut. Mauris consectetur, lacus at tristique aliquet, quam nunc aliquam quam, id semper eros lacus ut neque.
-        </p>
-    </article>
+    <section class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                <article class="post">
+                    <h1><a href="#">Sample Video</a></h1>
+                    <p>
+                        <video controls="controls" src="{% static 'media/sample-mp4-file.mp4' %}" type="video/mp4">
+                    </p>
+                </article>
+                <article class="post">
+                    <h1><a href="#">Sample Image</a></h1>
+                    <p>
+                        <img src="{% static 'media/sample image.jpeg' %}" alt="sample" />
+                    </p>
+                </article>
+                {% for post in posts %}
+                <article class="post">
+                    <div class="date">
+                        <p>published: {{post.published_date}}</p>
+                    </div>
+                    <h1><a href="#">{{post.title}}</a></h1>
+                    <p>
+                        {{post.text|linebreaksbr}}
+                    </p>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
 </body>
 
 </html>
