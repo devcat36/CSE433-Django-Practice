@@ -1,52 +1,15 @@
-{% load static %}
+{% extends 'blog/base.html' %}
 
-<!DOCTYPE html>
-<html lang="kr">
-
-<head>
-    <title>
-        Django Girl Blog
-    </title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-</head>
-
-<body>
-    <header class="page-header">
-        <h1>Django Girls Blog</h1>
-    </header>
-    <section class="content container">
-        <div class="row">
-            <div class="col-md-8">
-                <article class="post">
-                    <h1><a href="#">Sample Video</a></h1>
-                    <p>
-                        <video controls="controls" src="{% static 'media/sample-mp4-file.mp4' %}" type="video/mp4">
-                    </p>
-                </article>
-                <article class="post">
-                    <h1><a href="#">Sample Image</a></h1>
-                    <p>
-                        <img src="{% static 'media/sample image.jpeg' %}" alt="sample" />
-                    </p>
-                </article>
-                {% for post in posts %}
-                <article class="post">
-                    <div class="date">
-                        <p>published: {{post.published_date}}</p>
-                    </div>
-                    <h1><a href="#">{{post.title}}</a></h1>
-                    <p>
-                        {{post.text|linebreaksbr}}
-                    </p>
-                </article>
-                {% endfor %}
-            </div>
+{% block content %}
+    {% for post in posts %}
+    <article class="post">
+        <div class="date">
+            <p>published: {{post.published_date}}</p>
         </div>
-    </section>
-
-</body>
-
-</html>
+        <h1><a href="#">{{post.title}}</a></h1>
+        <p>
+            {{post.text|linebreaksbr}}
+        </p>
+    </article>
+    {% endfor %}
+{% endblock %}
